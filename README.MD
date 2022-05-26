@@ -21,208 +21,207 @@ In this process, three modeling steps are carried out: 1) BRONZE call where we e
 
 >> <h3> Sample of Payload in Stagin </h3>
 -------------------------
-> address
+> personagens
 ```
+> db.personagens.find().pretty()
 {
- "_id":"2W1159879A",
- "region_birth":"East Blue",
- "country_birth":"Warship Island",
- "city_birth":"North Wayne",
- "current_region":"East Blue",
- "current_country":"Warship Island",
- "current_city":"East Joshua",
- "street":"Christine Fields",
- "number":"4104",
- "postalcode":"04650",
- "mailer":"mary.east4104@onepiece.com.br",
- "register_data":"20210423"
+        "_id" : ObjectId("628ed981f515d293adad3e31"),
+        "nome_completo" : "A.o. ",
+        "kanji" : "A・O(アーオー) ",
+        "apelido" : "none",
+        "recompensa(beries)" : "none",
+        "aniversario" : "none",
+        "descricao" : "Um dos Aliados do Barba Branca. Quando soube da captura do Ace, participou da operação de resgate.",
+        "url" : "https://onepieceex.net/wp-content/uploads/2020/06/A.o._full.jpg"
 }
-```
-
-> fruit
-```
 {
- "_id":"3Y6898825C",
- "type_of_fruit":"it does not have",
- "fruit_name":"it does not have",
- "fruit_category":"it does not have",
- "number_times_resurrected":"0",
- "register_data":"20210622"
+        "_id" : ObjectId("628ed981f515d293adad3e32"),
+        "nome_completo" : "Absalom ",
+        "kanji" : "アブサロム ",
+        "apelido" : "Absalom do Cemitério ",
+        "recompensa(beries)" : "none",
+        "aniversario" : "30 de dezembro ",
+        "descricao" : "Em breve mais informações",
+        "url" : "https://onepieceex.net/wp-content/uploads/2020/06/Absalom_full.jpg"
 }
-```
-
-
-> job
-```
 {
- "_id":"2W1159879A",
- "job":"Freight forwarder",
- "current_job":"YES",
- "contracting_company":"Robinson, Simon and Hernandez",
- "start_date":"1981/11/02",
- "year_working_time":40,
- "initial_salary":4904.0,
- "current_wage":5345.36,
- "register_data":"20210423"
+        "_id" : ObjectId("628ed981f515d293adad3e33"),
+        "nome_completo" : "Acrobatic Fuwas ",
+        "kanji" : "軽業フワーズ ",
+        "apelido" : "none",
+        "recompensa(beries)" : "none",
+        "aniversario" : "none",
+        "descricao" : "Grupo de 4 piratas acrobatas no bando dos Piratas Buggy e foram fundados em 13 de Junho.",
+        "url" : "https://onepieceex.net/wp-content/uploads/2020/06/acrobatic-fuwas_full.jpg"
 }
-```
-
-> persona
-```
 {
- "_id":"7P1521176A",
- "first_name":"Kristin",
- "last_name":"Smith",
- "gender":"F",
- "race":"Minks",
- "birthday":"1967-03-26",
- "age":"54",
- "devil_fruit_user":"it does not have",
- "has_job":"has",
- "has_tatoo":"it does not have",
- "has_scar":"has",
- "has_disability":"no deficiency",
- "security_social_number":"575-40-5565",
- "phone":"001-985-833-8626x33224",
- "has_rewards":"has",
- "sketch":"https://www.lorempixel.com/350/215",
- "register_data":"20210816"
+        "_id" : ObjectId("628ed981f515d293adad3e34"),
+        "nome_completo" : "Agyo ",
+        "kanji" : "アギョウ ",
+        "apelido" : "none",
+        "recompensa(beries)" : "none",
+        "aniversario" : "none",
+        "descricao" : "Em breve mais informações",
+        "url" : "https://onepieceex.net/wp-content/uploads/2020/06/agyou_full.jpg"
 }
-```
-
-> physical_characteristics
-```
 {
- "_id":"1S6151128X",
- "color_hair":"SeaShell",
- "color_skill":"BLUISH",
- "type_of_tatoo":"it does not have",
- "where_in_body":"it does not have",
- "color_of_tatoo":"it does not have",
- "scar":"Left arm",
- "color_eyes":"SeaShell",
- "register_data":"20210828"
+        "_id" : ObjectId("628ed981f515d293adad3e35"),
+        "nome_completo" : "Aisa ",
+        "kanji" : "アイサ ",
+        "apelido" : "none",
+        "recompensa(beries)" : "none",
+        "aniversario" : "none",
+        "descricao" : "Em breve mais informações",
+        "url" : "https://onepieceex.net/wp-content/uploads/2020/06/Aisa_full.jpg"
 }
-```
-
-> rewards
-```
 {
- "_id":"2W1159879A",
- "ssn_people":"165-53-1723",
- "main_crime":"female violence",
- "code_crime":13,
- "tax_collected_government":37824.56,
- "debt_with_government":31503.56,
- "rewards":961679.94,
- "register_data":"20210423"
+        "_id" : ObjectId("628ed981f515d293adad3e36"),
+        "nome_completo" : "Akumai ",
+        "kanji" : "Aniversário:27 de dezembro ",
+        "apelido" : "none",
+        "recompensa(beries)" : "none",
+        "aniversario" : "none",
+        "descricao" : "Era um agente da Billions da Baroque Works seguia o Mr. 2 Bon Clay em todos os lugares antes de ser capturado por Hina quando seu ídolo e seu bando se sacrificaram para salvar os Piratas do Chapéu de Palha. Seu destino atual é desconhecido.",
+        "url" : "https://onepieceex.net/wp-content/uploads/2020/06/akumai_full.jpg"
 }
-```
-
-----------------------------------------------
->> <h3> Sample of Payload in Datalake </h3>
--------------------------
-> one_piece
->> collection not_fruit_user
-
-```
-> db.not_fruit_user.findOne()
 {
-        "_id" : ObjectId("61ae0e981a5f75689018f0ca"),
-        "payload" : {
-                "personal_characteristics" : {
-                        "first_name" : "Antonio",
-                        "last_name" : "Weaver",
-                        "gender" : "M",
-                        "race" : "Tenryūbitos",
-                        "birthday" : "1964-08-19",
-                        "age" : "57"
-                },
-                "physical_characteristics" : {
-                        "has_disability" : "left leg amputation",
-                        "color_hair" : "Crimson",
-                        "color_skill" : "BLUISH",
-                        "scar" : "Left arm",
-                        "color_eyes" : "Crimson"
-                },
-                "social_characteristics" : {
-                        "security_social_number" : "622-15-8792",
-                        "phone" : "001-935-652-4806x982",
-                        "sketch" : "https://www.lorempixel.com/820/394"
-                },
-                "address_information" : {
-                        "region" : "West Blue",
-                        "country" : "Country of Kano",
-                        "city" : "West Wendy",
-                        "street" : "Timothy Trail",
-                        "number" : "047",
-                        "postalcode" : "75496",
-                        "mailer" : "antonio.sout047@onepiece.com.br"
-                }
-        }
+        "_id" : ObjectId("628ed981f515d293adad3e37"),
+        "nome_completo" : "Aladdin ",
+        "kanji" : "アラディン ",
+        "apelido" : "none",
+        "recompensa(beries)" : "none",
+        "aniversario" : "none",
+        "descricao" : "Em breve mais informações",
+        "url" : "https://onepieceex.net/wp-content/uploads/2020/06/Aladdin_full.jpg"
 }
-
-```
->> collection fruit_user
-
-```
-> db.fruit_user.findOne()
 {
-        "_id" : ObjectId("61ae115a1a5f7568901933b4"),
-        "payload" : {
-                "personal_characteristics" : {
-                        "first_name" : "Patrick",
-                        "last_name" : "Miller",
-                        "gender" : "M",
-                        "race" : "Giants",
-                        "birthday" : "1942-03-20",
-                        "age" : "79"
-                },
-                "fruit_characteristics" : {
-                        "type_of_fruit" : "Paramecia",
-                        "fruit_name" : "Nail file Nail file no Mi",
-                        "fruit_category" : "Threatening",
-                        "number_times_resurrected" : "63"
-                },
-                "job_characteristics" : {
-                        "job" : "Medice",
-                        "current_job" : "NO",
-                        "contracting_company" : "Espinoza PLC",
-                        "start_date" : "1957/03/15",
-                        "year_working_time" : "64",
-                        "initial_salary" : "6980.0",
-                        "current_wage" : "7608.2"
-                },
-                "physical_characteristics" : {
-                        "type_of_tatoo" : "it does not have",
-                        "where_in_body" : "it does not have",
-                        "color_of_tatoo" : "it does not have",
-                        "color_eyes" : "GreenYellow",
-                        "color_hair" : "GreenYellow",
-                        "has_disability" : "no deficiency"
-                },
-                "social_characteristics" : {
-                        "security_social_number" : "088-98-1504",
-                        "phone" : "001-067-966-9205x26526",
-                        "sketch" : "https://www.lorempixel.com/900/849"
-                },
-                "rewards_informations" : {
-                        "main_crime" : "Murders",
-                        "code_crime" : "2",
-                        "tax_collected_government" : 55174.7,
-                        "debt_with_government" : "52004.7",
-                        "rewards" : "947598.4"
-                },
-                "address_information" : {
-                        "region" : "Sky",
-                        "country" : "Shandora",
-                        "city" : "Riggschester",
-                        "street" : "Denise Villages",
-                        "number" : "61234",
-                        "postalcode" : "06882",
-                        "mailer" : "patrick.sout61234@onepiece.com.br",
-                        "sketch" : "https://www.lorempixel.com/900/849"
-                }
-        }
+        "_id" : ObjectId("628ed981f515d293adad3e38"),
+        "nome_completo" : "Albion ",
+        "kanji" : "アルビオン ",
+        "apelido" : "O Retalhado ",
+        "recompensa(beries)" : " 92,000,000 ",
+        "aniversario" : "09 de novembro ",
+        "descricao" : "Em breve mais informações",
+        "url" : "https://onepieceex.net/wp-content/uploads/2020/06/Albion_full.jpg"
+}
+{
+        "_id" : ObjectId("628ed981f515d293adad3e39"),
+        "nome_completo" : "Alvida ",
+        "kanji" : "アルビダ ",
+        "apelido" : "Alvida da Clava de Ferro ",
+        "recompensa(beries)" : " 5,000,000 ",
+        "aniversario" : "14 de março ",
+        "descricao" : "Em breve mais informações",
+        "url" : "https://onepieceex.net/wp-content/uploads/2020/06/Alvida_full.jpg"
+}
+{
+        "_id" : ObjectId("628ed981f515d293adad3e3a"),
+        "nome_completo" : "Amadob ",
+        "kanji" : "アマドブ ",
+        "apelido" : "none",
+        "recompensa(beries)" : "none",
+        "aniversario" : "none",
+        "descricao" : "Em breve mais informações",
+        "url" : "https://onepieceex.net/wp-content/uploads/2020/06/Amadobu_full.jpg"
+}
+{
+        "_id" : ObjectId("628ed981f515d293adad3e3b"),
+        "nome_completo" : "Amazon ",
+        "kanji" : "アマゾン ",
+        "apelido" : "none",
+        "recompensa(beries)" : "none",
+        "aniversario" : "none",
+        "descricao" : "Em breve mais informações",
+        "url" : ""
+}
+{
+        "_id" : ObjectId("628ed981f515d293adad3e3c"),
+        "nome_completo" : "An Zengaiina ",
+        "kanji" : "Aniversário:31 de janeiro ",
+        "apelido" : "none",
+        "recompensa(beries)" : "none",
+        "aniversario" : "none",
+        "descricao" : "Em breve mais informações",
+        "url" : "https://onepieceex.net/wp-content/uploads/2020/06/an-zengaiina_full.jpg"
+}
+{
+        "_id" : ObjectId("628ed981f515d293adad3e3d"),
+        "nome_completo" : "Andre ",
+        "kanji" : "アンドレ ",
+        "apelido" : "none",
+        "recompensa(beries)" : "none",
+        "aniversario" : "none",
+        "descricao" : "Em breve mais informações",
+        "url" : "https://onepieceex.net/wp-content/uploads/2020/06/Andre_full.jpg"
+}
+{
+        "_id" : ObjectId("628ed981f515d293adad3e3e"),
+        "nome_completo" : "Anjo ",
+        "kanji" : "アンジョウ ",
+        "apelido" : "none",
+        "recompensa(beries)" : "none",
+        "aniversario" : "none",
+        "descricao" : "Em breve mais informações",
+        "url" : "https://onepieceex.net/wp-content/uploads/2020/06/Anjou_full.jpg"
+}
+{
+        "_id" : ObjectId("628ed981f515d293adad3e3f"),
+        "nome_completo" : "Ankoro ",
+        "kanji" : "アンコロ ",
+        "apelido" : "none",
+        "recompensa(beries)" : "none",
+        "aniversario" : "none",
+        "descricao" : "Em breve mais informações",
+        "url" : "https://onepieceex.net/wp-content/uploads/2020/06/Ankoro_full.jpg"
+}
+{
+        "_id" : ObjectId("628ed981f515d293adad3e40"),
+        "nome_completo" : "Antonio ",
+        "kanji" : "アントニオ ",
+        "apelido" : "none",
+        "recompensa(beries)" : "none",
+        "aniversario" : "none",
+        "descricao" : "Em breve mais informações",
+        "url" : "https://onepieceex.net/wp-content/uploads/2020/06/Antonio_full-1.jpg"
+}
+{
+        "_id" : ObjectId("628ed981f515d293adad3e41"),
+        "nome_completo" : "Aphelandra ",
+        "kanji" : "アフェランドラ ",
+        "apelido" : "none",
+        "recompensa(beries)" : "none",
+        "aniversario" : "none",
+        "descricao" : "Em breve mais informações",
+        "url" : "https://onepieceex.net/wp-content/uploads/2020/06/Aphelandra_full.jpg"
+}
+{
+        "_id" : ObjectId("628ed981f515d293adad3e42"),
+        "nome_completo" : "Arlong ",
+        "kanji" : "アーロン ",
+        "apelido" : "Serra ",
+        "recompensa(beries)" : " 20,000,000 ",
+        "aniversario" : "03 de maio ",
+        "descricao" : "Em breve mais informações",
+        "url" : "https://onepieceex.net/wp-content/uploads/2020/06/Arlong_full.jpg"
+}
+{
+        "_id" : ObjectId("628ed981f515d293adad3e43"),
+        "nome_completo" : "Atmos ",
+        "kanji" : "アトモス ",
+        "apelido" : "Búfalo D'Água ",
+        "recompensa(beries)" : "none",
+        "aniversario" : "19 de março ",
+        "descricao" : "Em breve mais informações",
+        "url" : "https://onepieceex.net/wp-content/uploads/2020/06/atmos_full.jpg"
+}
+{
+        "_id" : ObjectId("628ed981f515d293adad3e44"),
+        "nome_completo" : "Avalo Pizarro ",
+        "kanji" : "アバロ・ピサロ ",
+        "apelido" : "Rei Corrupto ",
+        "recompensa(beries)" : "none",
+        "aniversario" : "30 de setembro ",
+        "descricao" : "É conhecido como “Rei Corrupto”. Embora estava preso em Impel Down no Nível 6, ele foi libertado pelo invasão do Barba Negra e se juntou ao bando como Capitão Colossal da 4º Capitânia dos Piratas do Barba Negra.",
+        "url" : "https://onepieceex.net/wp-content/uploads/2020/06/Avalo-Pizarro_full.jpg"
 }
 ```
