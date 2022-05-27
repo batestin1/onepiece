@@ -20,33 +20,52 @@ import requests
 from bs4 import BeautifulSoup
 import pymongo
 import json
+from pyspark.sql import SparkSession
+from pyspark.sql.functions import max as max_
 
 
+path_parametros="/home/bates/repositorio/big_data/one_piece/parameters/scrapy.json"
+
+spark = SparkSession.builder.master("local[1]").appName("local").getOrCreate()
+spark.conf.set("spark.sql.execution.arrow.pyspark.enabled", "true")
+
+df_parar=spark.read.json(path_parametros)
+
+df_parar.createOrReplaceTempView("df_parar")
 
 
-url = "https://onepieceex.net/personagem/"
-headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'}
+url = df_parar.agg(max_("url")).collect()[0][0]
+user_agent = df_parar.agg(max_("User-Agent")).collect()[0][0]
+mozilla = df_parar.agg(max_("Mozilla")).collect()[0][0]
+compil = df_parar.agg(max_("compil")).collect()[0][0]
+dir_jsonfile = df_parar.agg(max_("dir_jsonfile")).collect()[0][0]
+extension_json = df_parar.agg(max_("extension_json")).collect()[0][0]
+local_host = df_parar.agg(max_("local_host")).collect()[0][0]
+mongo_port = df_parar.agg(max_("mongo_port")).collect()[0][0]
+db_mongo = df_parar.agg(max_("db_mongo")).collect()[0][0]
+db_collection = df_parar.agg(max_("db_collection")).collect()[0][0]
+
+headers = {f'{user_agent}': f'{mozilla}'}
 response = requests.get(url, headers=headers)
 soup = BeautifulSoup(response.content, 'html.parser')
-testes = soup.find_all("main", id="conteudo")
 list_link = []
-for i in soup.findAll('a',attrs={'href': re.compile("^https://onepieceex.net/personagem/")}): 
+for i in soup.findAll('a',attrs={'href': re.compile(f"^{compil}")}): 
     link = i.get('href') #salva todos os links de download na variavel link
     list_link.append(link)
-list_link.remove("https://onepieceex.net/personagem/")
-list_link.remove("https://onepieceex.net/personagem/")
+list_link.remove(f"{compil}")
+list_link.remove(f"{compil}")
 
 for i in list_link:
-    with open(f'./json_files/{i[34:-1]}.json', "w", encoding="UTF-8") as output: 
+    with open(f'{dir_jsonfile}{i[34:-1]}{extension_json}', "w", encoding="UTF-8") as output: 
         url = f"{i}"
-        headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'}
+        headers = {f'{user_agent}': f'{mozilla}'}
         response = requests.get(url, headers=headers)
         soup = BeautifulSoup(response.content, 'html.parser')
         imagem = soup.find_all("div", class_="personagem-imagem")
         descricao = soup.find_all("div", class_="personagem-info")
         componentes_base = soup.find_all("ul", class_="personagem-extra")
         desc = soup.find_all("p")
-        imagem_final = imagem[0].get("style").replace("background: url('", "").replace("') no-repeat center","")
+        imagem_final = imagem[0].get("style").replace("background: url('", "").replace("') no-repeat center","") if imagem[0].get("style").replace("background: url('", "").replace("') no-repeat center","") in imagem[0].get("style").replace("background: url('", "").replace("') no-repeat center","") else "none"
         descricao_final = descricao[0].find_all("p")[0].get_text()
 
         for i in range(len(componentes_base[0].find_all("li"))):
@@ -88,18 +107,20 @@ for i in list_link:
                 "url": imagem_final
             }
         json.dump(df, output, allow_nan=True, indent=True, separators=(',',':'))
+        print(f"Aquivo de {nome} criado com sucesso!")
 
 print("#"*100)
 print("putting in the mongo")
 print("#"*100)
-client = pymongo.MongoClient('localhost', 27017)
-db = client['onepiece']
-Collection = db["personagens"]
+client = pymongo.MongoClient(f'{local_host}', mongo_port)
+db = client[f'{db_mongo}']
+Collection = db[f"{db_collection}"]
 
 for i in list_link:
-    with open(f'./json_files/{i[34:-1]}.json') as file:
+    with open(f'{dir_jsonfile}{i[34:-1]}{extension_json}') as file:
          db = json.load(file)
          Collection.insert_one(db)
 
 for i in list_link:
-  os.remove(f'./json_files/{i[34:-1]}.json')
+  os.remove(f'{dir_jsonfile}{i[34:-1]}{extension_json}')
+  print("arquivos removidos corretamente!")

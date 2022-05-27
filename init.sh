@@ -1,9 +1,10 @@
-#/bash/bin
+
+
                         #********************************************************************************#
                         #                                                                                #
                         #                                  нεℓℓσ,вαтεs!                                  #
                         #                                                                                #
-                        #   filename: run.sh                                                             #
+                        #   filename: init.sh                                                            #
                         #   created: 2022-05-22                                                          #
                         #   system: Windows                                                              #
                         #   version: 64bit                                                               #
@@ -12,17 +13,12 @@
                         #                           import your librarys below                           #
                         #********************************************************************************#
 
-LOG=/home/bates/repositorio/big_data/one_piece/logs/logs.log
-echo "Começando o projeto"
-cd /home/bates/repositorio/big_data/one_piece/
-cd dataset
-mkdir json_files >> ${LOG}
-python3 scrapy_one_piece.py >>${LOG}
-
-cd ..
-python3 scripts/script_bronze.py >>${LOG}
-python3 scripts/script_silver.py >>${LOG}
-python3 scripts/script_gold.py >>${LOG}
+echo "copiando o crontab para o servidor"
+service cron start
+cd /home/bates/repositorio/big_data/one_piece/scheduler/
+chmod +x crontab
+cp /home/bates/repositorio/big_data/one_piece/scheduler/crontab /tmp/crontab.hUDskU/
+cd /tmp/crontab.hUDskU/
+echo "Trabalho agendado!"
 
 
-echo "Projeto Finalizado"
